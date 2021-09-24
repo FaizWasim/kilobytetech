@@ -123,7 +123,7 @@
           <tbody>
             <tr *ngFor="
               let client of clients">
-              <td (click)="goToCompanyDetail(client.clientID,client.financialYear)" class="cursor-pointer text-primary">
+              <td (click)="goToCompanyDetail(client.clientID,client.financialYear)" class="cursor text-primary">
                 {{client.clientID}}</td>
               <td class="text-primary">{{client.companyName}}</td>
               <td>{{client.createdAt}}</td>
@@ -132,7 +132,9 @@
                   {{member.name}}
                 </ng-container>
               </td>
-              <td><i class="fa fa-user-plus mx-2" aria-hidden="true"></i> <i class="fa fa-user-times bg-secondary"
+              <td><i class="fa fa-user-plus mx-2 cursor" aria-hidden="true"
+                (click)="goToCompanyDetail(client.clientID,client.financialYear)"
+                ></i> <i class="fa fa-user-times bg-secondary"
                   aria-hidden="true"></i></td>
             </tr>
           </tbody>
