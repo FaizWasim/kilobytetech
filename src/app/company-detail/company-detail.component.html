@@ -1,0 +1,94 @@
+<div class="row mx-0">
+    <div class="col-1 bg-primary">
+        <div class="my-5 text-center">
+            <h1>HMA</h1>
+        </div>
+        <div class="my-5 text-center">
+            <a class="cursor-pointer icon text-decoration-none">
+                <span> <i class="fa fa-address-book" aria-hidden="true"></i> </span>
+                <p class="cursor-pointer">Dashboard</p>
+            </a>
+        </div>
+        <div class="my-5 text-center">
+            <a class="cursor-pointer icon text-decoration-none">
+                <span> <i class="fa fa-address-book" aria-hidden="true"></i> </span>
+                <p class="cursor-pointer">Clients</p>
+            </a>
+        </div>
+        <div class="my-5 text-center ">
+            <a class="cursor-pointer icon text-decoration-none">
+                <span> <i class="fa fa-file-text-o" aria-hidden="true"></i> </span>
+                <p class="cursor-pointer">Document</p>
+            </a>
+        </div>
+        <div class="my-5 text-center ">
+            <a class="cursor-pointer icon text-decoration-none">
+                <span> <i class="fa fa-tasks" aria-hidden="true"></i> </span>
+                <p class="cursor-pointer">Task</p>
+            </a>
+        </div>
+        <div class="my-5 text-center">
+            <a class="cursor-pointer icon text-decoration-none">
+                <span><i class="fa fa-credit-card" aria-hidden="true"></i> </span>
+                <p class="cursor-pointer">Payment</p>
+            </a>
+        </div>
+    </div>
+    <div class="col-11 ">
+        <div class="row my-3">
+            <div class="col-2">
+                <h1><span class="text-muted">< </span>PaperGrid</h1>
+                <p class="ml-4"><span class="text-success">116.67%    </span> <span class="text-muted">Profile Completion</span></p>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-8 d-flex">
+                <div class="mx-5">
+                    <h4>Document</h4>
+                </div>
+                <div class="mx-5">
+                    <h4> Task</h4>
+                </div>
+                <div class="mx-5">
+                    <h4>Payment</h4>
+                </div>
+                <div class="mx-5">
+                    <h4>Profile</h4>
+                </div>
+            </div>
+            <div class="col-2">
+                <select class="form-control" (change)="selectFinancialYear($event)">
+                    <option value="">Select</option>
+                    <option *ngFor="let list of financialYearList" [value]="list">{{list}}</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <select class="form-control">
+                    <option value="">Select</option>
+                    <option *ngFor="let list of financialMonthList" [value]="list">{{list}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <ng-container *ngFor="let list of document; let i = index">
+                <div class="col-3 mb-3 px-2">
+                    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Header</div>
+                        <div class="card-body">
+                            <h5 class="card-title" *ngIf="list.companyName!=null">{{list.companyName}}</h5>
+                            <h5 class="card-title" *ngIf="list.companyName==null || list.companyName==''">Company Name
+                            </h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the
+                                card's content.</p>
+                            <input type="file" class="btn btn-success col-12" accept="any" (change)="handleFileInput($event.target.files
+                                ,list._id)">
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+
+    </div>
+</div>

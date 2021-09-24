@@ -1,0 +1,143 @@
+<div *ngIf="pageToShow == 'loginPage'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3 white">
+        <div class="container mt-5">
+          <div class="row ml-5 center">
+            <div class="bold-text mt-4 box ml-5">
+              <h1>Welcome Back!</h1>
+              <form name="loginForm" [formGroup]="loginForm" class="mt-5">
+                <div class="form-group">
+                  <div class="col">
+                    <input type="text" class="form-control form-control-sm" placeholder="Username"
+                      formControlName="userName" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col">
+                    <input type="password" class="form-control form-control-sm" placeholder="Password"
+                      formControlName="password" />
+                  </div>
+                  <div class="col text-right mt-2">
+                    <span class="font-italic text-primary ">Forgot Password?</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="text-center text-danger">
+                    {{errorMessage}}
+                  </div>
+                </div>
+                <div class="row justify-content-center mb-3">
+                  <button class="btn btn-primary mt-3 " (click)="submitLoginForm(loginForm)">
+                    <span class="d-inline-block px-4 py-1">Login</span>
+                    <i class="fas fa-spinner fa-spin" style="padding: 3px" *ngIf="showLoader"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-9 blue">
+        <div class="bottom-text">
+          <p>Powered by Kilobyte Technologies Pvt Ltd</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pageToShow=='secondPage'">
+  <div class="row mx-0">
+    <div class="col-1 bg-primary">
+      <div class="my-5 text-center">
+        <h1>HMA</h1>
+      </div>
+      <div class="my-5 text-center">
+        <a class="cursor-pointer icon text-decoration-none">
+          <span> <i class="fa fa-address-book" aria-hidden="true"></i> </span>
+          <p class="cursor-pointer">Dashboard</p>
+        </a>
+      </div>
+      <div class="my-5 text-center">
+        <a class="cursor-pointer icon text-decoration-none">
+          <span> <i class="fa fa-address-book" aria-hidden="true"></i> </span>
+          <p class="cursor-pointer">Clients</p>
+        </a>
+      </div>
+      <div class="my-5 text-center ">
+        <a class="cursor-pointer icon text-decoration-none">
+          <span> <i class="fa fa-file-text-o" aria-hidden="true"></i> </span>
+          <p class="cursor-pointer">Document</p>
+        </a>
+      </div>
+      <div class="my-5 text-center ">
+        <a class="cursor-pointer icon text-decoration-none">
+          <span> <i class="fa fa-tasks" aria-hidden="true"></i> </span>
+          <p class="cursor-pointer">Task</p>
+        </a>
+      </div>
+      <div class="my-5 text-center">
+        <a class="cursor-pointer icon text-decoration-none">
+          <span><i class="fa fa-credit-card" aria-hidden="true"></i> </span>
+          <p class="cursor-pointer">Payment</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-11">
+      <div class="row mt-4">
+        <div class="col-4">
+          <p>Clients</p>
+        </div>
+        <div class="col-1">
+          <select class="form-control" (change)="changePageSize($event)" >
+            <option>PageNo</option>
+            <option *ngFor="let item of pageNoCount" [value]="item">{{item}}</option>
+          </select>
+        </div>
+        <div class="col-1">
+          <select class="form-control" (change)="changeSize($event)">
+            <option>Size</option>
+            <option *ngFor="let item of sizeCount" [value]="item">{{item}}</option>
+          </select>
+        </div>
+        <div class="col-4 d-flex flex-row-reverse">
+          <input type="search" placeholder="Search using client name" class="form-control">
+        </div>
+        <div class="col-2 d-flex flex-row-reverse">
+          <button class="btn btn-success">+Add Clients</button>
+        </div>
+      </div>
+      <div class="row mx-0 table-row">
+        <table class="table table-striped mt-4">
+          <thead>
+            <tr>
+              <th scope="col">Client Id</th>
+              <th scope="col">Company Name</th>
+              <th scope="col">Creation Date</th>
+              <th scope="col">Assigned Member</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+              let client of clients">
+              <td (click)="goToCompanyDetail(client.clientID,client.financialYear)" class="cursor-pointer text-primary">
+                {{client.clientID}}</td>
+              <td class="text-primary">{{client.companyName}}</td>
+              <td>{{client.createdAt}}</td>
+              <td>
+                <ng-container *ngFor=" let member of client.assignedMembers">
+                  {{member.name}}
+                </ng-container>
+              </td>
+              <td><i class="fa fa-user-plus mx-2" aria-hidden="true"></i> <i class="fa fa-user-times bg-secondary"
+                  aria-hidden="true"></i></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
